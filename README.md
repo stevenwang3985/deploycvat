@@ -1,6 +1,6 @@
-# deploycvat
+# deploycvat (reference https://github.com/cvat-ai/cvat)
 
-1. Dockerfile to create a cvat container image to be deployed in linux cloud, using python 3.9+
+1. Dockerfile to create a cvat container image to be deployed in linux cloud for enterprise users, using python 3.9+
 2. Allow multiple users to connect to the container URL to annotate their own images, which are uploaded from their laptop.
 
 # success criteria
