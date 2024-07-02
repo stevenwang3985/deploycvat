@@ -1,5 +1,5 @@
 # Use the official Python image as a base image
-FROM python:3.9-bullseye
+FROM python:3.10.14-bullseye
 # Use the official Python image as a base image
 # Set environment variables
 ENV NODE_VERSION=18
@@ -13,6 +13,11 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libpng-dev \
     libtiff-dev \
+    python3-dev \
+    gcc \
+    libssl-dev \
+    libsasl2-dev \
+    libldap2-dev \
     libpq-dev \
     sudo \
     ffmpeg \
@@ -42,6 +47,7 @@ WORKDIR /home/cvat
 RUN git clone https://github.com/opencv/cvat.git
 WORKDIR /home/cvat/cvat/cvat
 
+
 # Install CVAT Python dependencies
 RUN pip install --no-cache-dir -r requirements/base.txt
 
@@ -49,9 +55,12 @@ RUN pip install --no-cache-dir -r requirements/base.txt
 RUN python3 -m django --version
 
 # Install CVAT UI dependencies
-WORKDIR /home/cvat/cvat-ui
+WORKDIR /home/cvat/cvat/cvat-ui
 RUN yarn install --frozen-lockfile
 RUN yarn build
+
+# Install Django Extensions for manage.py 
+RUN pip install --no-cache-dir django-extensions django-silk
 
 # Build the CVAT server
 WORKDIR /home/cvat/cvat
