@@ -62,6 +62,9 @@ RUN yarn build
 # Install Django Extensions for manage.py 
 RUN pip install --no-cache-dir django-extensions django-silk
 
+# Install gunicorn/add gunicorn to $PATH
+RUN pip install --no-cache-dir gunicorn
+
 # Build the CVAT server
 WORKDIR /home/cvat/cvat
 RUN python3 manage.py collectstatic --noinput
@@ -75,6 +78,10 @@ ENV POSTGRES_PASSWORD=cvat
 ENV POSTGRES_DB=cvat
 ENV POSTGRES_HOST=db
 ENV POSTGRES_PORT=5432
+
+# Set up environment variables for gunicorn
+ENV PATH=$PATH:/home/cvat/.local/lib/python3.10/site-packages
+
 
 # Expose the port the app runs on
 EXPOSE 8080
