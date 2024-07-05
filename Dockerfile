@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
     libtiff-dev \
     python3-dev \
     gcc \
+    gunicorn \
     libssl-dev \
     libsasl2-dev \
     libldap2-dev \
@@ -80,7 +81,7 @@ ENV POSTGRES_HOST=db
 ENV POSTGRES_PORT=5432
 
 # Set up environment variables for gunicorn
-ENV PATH=$PATH:/home/cvat/.local/lib/python3.10/site-packages
+# ENV PATH=$PATH:/home/cvat/.local/lib/python3.10/site-packages
 
 
 # Expose the port the app runs on
