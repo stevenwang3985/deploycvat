@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y \
     libtiff-dev \
     python3-dev \
     gcc \
-    gunicorn \
     libssl-dev \
     libsasl2-dev \
     libldap2-dev \
@@ -48,9 +47,21 @@ WORKDIR /home/cvat
 RUN git clone https://github.com/opencv/cvat.git
 WORKDIR /home/cvat/cvat/cvat
 
+# Start Python venv
+WORKDIR /home/cvat
+RUN python3 -m venv venv
+# RUN source venv/bin/activate
+ENV PATH="/home/cvat/venv/bin:$PATH"
 
 # Install CVAT Python dependencies
+WORKDIR /home/cvat/cvat/cvat
 RUN pip install --no-cache-dir -r requirements/base.txt
+
+# Install Django Extensions for manage.py 
+RUN pip install --no-cache-dir django-extensions django-silk
+
+# Install uvicorn and gunicorn to run asgi.py
+RUN pip install --no-cache-dir uvicorn gunicorn
 
 # Debug step to verify Django installation
 RUN python3 -m django --version
@@ -60,18 +71,13 @@ WORKDIR /home/cvat/cvat/cvat-ui
 RUN yarn install --frozen-lockfile
 RUN yarn build
 
-# Install Django Extensions for manage.py 
-RUN pip install --no-cache-dir django-extensions django-silk
-
-# Install gunicorn/add gunicorn to $PATH
-RUN pip install --no-cache-dir gunicorn
 
 # Build the CVAT server
 WORKDIR /home/cvat/cvat
 RUN python3 manage.py collectstatic --noinput
 
 # Set up environment variables for Django
-ENV DJANGO_SETTINGS_MODULE=cvat.settings.production
+ENV DJANGO_SETTINGS_MODULE=cvat.settings.development
 ENV DJANGO_ALLOWED_HOSTS=*
 ENV DJANGO_SECRET_KEY=your_secret_key
 ENV POSTGRES_USER=cvat
@@ -85,7 +91,14 @@ ENV POSTGRES_PORT=5432
 
 
 # Expose the port the app runs on
-EXPOSE 8080
+EXPOSE 8000
 
 # Command to run the server
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "4", "cvat.wsgi:application"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "4", "cvat.wsgi:application"]
+# CMD ["uvicorn", "--port", "8080", "--workers", "4", "cvat.asgi:application"]
+CMD ["python", "-m", "gunicorn", "cvat.asgi:application", "--workers", "4", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
+
+
+# remember to navigate to the correct folder cvat.asgi means cvat/asgi
+# python -m gunicorn cvat.asgi:application --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8080
+# python -m gunicorn --bind 0.0.0.0:8080 --workers 4 cvat.wsgi:application

@@ -11,7 +11,7 @@
 
 # how to run locally
 1. docker build -f Dockerfile -t cvat-local .
-2. docker run -p 8080:8080 cvat-local
+2. docker run -p 3000:3000 cvat-local
 
 # access bash 
 1. docker run -it cvat-local /bin/bash # for ubunutu terminal instead of python shell
