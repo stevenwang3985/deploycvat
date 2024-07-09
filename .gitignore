@@ -6,8 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-# Ignore test/dev Dockerfile
-/Dockerfile.dev
 
 # Distribution / packaging
 .Python
