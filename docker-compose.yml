@@ -275,6 +275,7 @@ services:
       options:
         max-size: 100m
         max-file: "10"
+        
   cvat_opa:
     container_name: cvat_opa
     image: openpolicyagent/opa:0.63.0
