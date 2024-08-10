@@ -420,7 +420,7 @@ grafana:
 ingress:
   ## @param ingress.enabled Enable ingress resource generation for CVAT
   ##
-  enabled: true
+  enabled: false
   ## @param ingress.hostname Host for the ingress resource
   ##
   hostname: cvat.local
@@ -445,7 +445,7 @@ ingress:
   tlsSecretName: ingress-tls-cvat
 
 traefik:
-  enabled: true
+  enabled: false
   logs:
     general:
       format: json
@@ -468,10 +468,8 @@ traefik:
             RouterName: keep
             StartUTC: keep
   providers:
-    kubernetesIngress:
-      endpoint: "https://cvat.local"
+    kubernetesIngress: 
       allowEmptyServices: true
-      ingressClass: "cvat-test-traefik"
 
 smokescreen:
   opts: ''
