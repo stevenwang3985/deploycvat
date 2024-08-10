@@ -27,4 +27,4 @@ Here are the instructions for starting a kubernetes cluster locally:
 5. Run the application using `kubectl apply -f cvat-cache-db-persistentvolumeclaim.yaml,cvat-data-persistentvolumeclaim.yaml,cvat-db-deployment.yaml,cvat-db-persistentvolumeclaim.yaml,cvat-inmem-db-persistentvolumeclaim.yaml,cvat-keys-persistentvolumeclaim.yaml,cvat-logs-persistentvolumeclaim.yaml,cvat-opa-deployment.yaml,cvat-redis-inmem-deployment.yaml,cvat-redis-ondisk-deployment.yaml,cvat-server-deployment.yaml,cvat-ui-deployment.yaml,cvat-utils-deployment.yaml,cvat-worker-analytics-reports-deployment.yaml,cvat-worker-annotation-deployment.yaml,cvat-worker-export-deployment.yaml,cvat-worker-import-deployment.yaml,cvat-worker-quality-reports-deployment.yaml,cvat-worker-webhooks-deployment.yaml,traefik-deployment.yaml,traefik-service.yaml`
 6. Allow minikube to connect to traefik LoadBalancer by running `minikube tunnel`
 7. Check the external ip of traefik using `kubectl get services`
-8. Access the application using traefik's external ip `<external_ip:8080> 
+8. Access the application using traefik's external ip `external_ip:8080`
