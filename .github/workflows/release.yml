@@ -34,5 +34,6 @@ jobs:
         with:
           skip_existing: true
           packages_with_index: true
+          charts_dir: helm-chart
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
