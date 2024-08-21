@@ -3,13 +3,13 @@
 1. Dockerfile to create a cvat container image to be deployed in linux cloud for enterprise users, using python 3.9+
 2. Allow multiple users to connect to the container URL to annotate their own images, which are uploaded from their laptop.
 
-# success criteria
+# success criteria (mostly outdated)
 1. The Dockerfile can be used to build the container image on Win10 laptop.
 2. The Dockerfile uses python 3.9 or newer version.
 3. The image can run on DockerDesktop using WSL core. Try to create a loadbalancer for the container.
-4. Allow more than 1 user to connect to CVAT on webbrowser (chrome).  Refer to CVAT user's guide,  Try to upload any image and draw a retangle anywhere on the image as annotation test.  
+4. Allow more than 1 user to connect to CVAT on webbrowser (chrome).  Refer to CVAT user's guide,  Try to upload any image and draw a retangle anywhere on the image as annotation test. (main criteria) 
 
-# how to run locally
+# Local Deployment
 
 ## System:
 Windows 11, Docker Desktop, Kubernetes, helm
@@ -35,3 +35,10 @@ Windows 11, Docker Desktop, Kubernetes, helm
 9. View ui at localhost
 - Enter your username and password and you should be able to access
 
+# Cloud Deployment 
+
+## System:
+Rancher, Helm, Github Pages
+
+## Steps:
+Uses [Helm Chart Releaser Action](https://github.com/marketplace/actions/helm-chart-releaser) to publish the chart to gh-pages, Github Pages to host the chart which you can pull 
