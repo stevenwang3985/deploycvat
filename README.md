@@ -41,4 +41,4 @@ Windows 11, Docker Desktop, Kubernetes, helm
 Rancher, Helm, Github Pages
 
 ## Steps:
-Uses [Helm Chart Releaser Action](https://github.com/marketplace/actions/helm-chart-releaser) to publish the chart to gh-pages, Github Pages to host the chart which you can pull from anywhere.
+Uses [Helm Chart Releaser Action](https://github.com/marketplace/actions/helm-chart-releaser) to publish the chart to gh-pages, Github Pages to host the chart which you can pull from anywhere. 
