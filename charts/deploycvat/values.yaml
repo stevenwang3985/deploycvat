@@ -134,6 +134,8 @@ cvat:
 #        storageClassName: default
 #        accessModes:
 #         - ReadWriteMany
+        accessModes:
+          - ReadWriteOnce
         size: 20Gi
     disableDistinctCachePerService: false
   frontend:
