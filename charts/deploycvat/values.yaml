@@ -1,7 +1,7 @@
 # Default values for cvat.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
+ 
 
 imagePullSecrets: []
 nameOverride: ""
@@ -134,6 +134,8 @@ cvat:
 #        storageClassName: default
 #        accessModes:
 #         - ReadWriteMany
+        accessModes:
+          - ReadWriteOnce
         size: 20Gi
     disableDistinctCachePerService: false
   frontend:
@@ -271,7 +273,7 @@ cvat:
 #     storageClassName: default
 #     accessModes:
 #       - ReadWriteOnce
-      size: 100Gi
+      size: 10Gi
 
 postgresql:
   #See https://github.com/bitnami/charts/blob/master/bitnami/postgresql/ for more info
@@ -309,9 +311,6 @@ redis:
     create: true
     name: cvat-redis-secret
     password: cvat_redis
-  persistence:
-    enabled: true
-    size: 50Gi
   # TODO: persistence options
 
 nuclio:
@@ -468,7 +467,7 @@ traefik:
             RouterName: keep
             StartUTC: keep
   providers:
-    kubernetesIngress: 
+    kubernetesIngress:
       allowEmptyServices: true
 
 smokescreen:

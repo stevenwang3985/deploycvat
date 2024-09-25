@@ -34,7 +34,7 @@ jobs:
         with:
           skip_existing: true
           packages_with_index: true
-          charts_dir: helm-chart
+          charts_dir: charts
           pages_branch: gh-pages
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
