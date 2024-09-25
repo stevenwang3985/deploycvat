@@ -1,0 +1,44 @@
+apiVersion: v1
+entries:
+  cvat:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2024-09-25T23:53:56.690207372Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.*
+    - condition: clickhouse.enabled
+      name: clickhouse
+      repository: https://charts.bitnami.com/bitnami
+      version: 4.1.*
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 18.5.*
+    - condition: nuclio.enabled
+      name: nuclio
+      repository: https://nuclio.github.io/nuclio/charts
+      version: 0.19.0
+    - condition: analytics.enabled
+      name: vector
+      repository: https://helm.vector.dev
+      version: 0.19.*
+    - condition: analytics.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 6.60.*
+    - condition: traefik.enabled
+      name: traefik
+      repository: https://helm.traefik.io/traefik
+      version: 25.0.0
+    description: A Helm chart for Kubernetes
+    digest: e27dffb906761f6b631f1da6838fd9acb897043f24da95b3c5b7fee92b84c87c
+    kubeVersion: '>= 1.19.0-0'
+    name: cvat
+    type: application
+    urls:
+    - cvat-1.0.3.tgz
+    version: 1.0.3
+generated: "2024-09-25T23:53:56.690214976Z"
