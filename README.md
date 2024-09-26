@@ -38,7 +38,12 @@ Windows 11, Docker Desktop, Kubernetes, helm
 # Cloud Deployment 
 
 ## System:
-Rancher, Helm, Github Pages
+Rancher or GKE, Helm, Github Pages
 
 ## Steps:
 Uses [Helm Chart Releaser Action](https://github.com/marketplace/actions/helm-chart-releaser) to publish the chart to gh-pages, Github Pages to host the chart which you can pull from anywhere. 
+- make sure to store the chart(s) within a /charts folder or else the workflow won't release deploycvat properly by default when pushed to main 
+
+## GKE notes (for free trial version)
+- `gcloud cluster create` provisions 100GB SSD per node, where there may be more than one node automatically provisioned for you. 
+- add --disk-size=yourdisksize to keep from going over the 500GB cluster storage quota on the GCP free trial 
